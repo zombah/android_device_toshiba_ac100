@@ -1,0 +1,11 @@
+[
+    {
+        "repository": "android_device_toshiba_paz00-common",
+        "target_path": "device/toshiba/paz00-common"
+    },
+    {
+        "repository": "android_kernel_toshiba_paz00",
+        "target_path": "kernel/toshiba/paz00",
+        "branch": "linux-tegra-nv-ac100-3.1-exp"
+    }
+]

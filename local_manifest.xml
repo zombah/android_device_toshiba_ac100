@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="git://github.com/CyanogenMod/" name="CyanogenMod" review="review.cyanogenmod.com" />
+  <project name="zombah/android_vendor_toshiba_paz00" path="vendor/toshiba/paz00" remote="github" revision="ics" />
+  <project name="zombah/android_device_toshiba_paz00" path="device/toshiba/paz00" remote="github" revision="jellybean" />
+  <project name="zombah/ac100/zombahs-marvin24s-kernel" path="kernel/toshiba/paz00" remote="gitorious" revision="linux-tegra-nv-ac100-3.1-exp" />
+</manifest>
