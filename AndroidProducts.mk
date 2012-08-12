@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_ac100_116.mk
+    device/toshiba/ac100_116/full_ac100_116.mk
