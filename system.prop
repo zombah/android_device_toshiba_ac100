@@ -1,2 +1,6 @@
+# for internal modem
 rild.libpath=/system/lib/libmbm-ril.so
 rild.libargs=-d /dev/ttyACM1 -i wwan0
+# for external huawei modems
+#rild.libpath=/system/lib/libhuaweigeneric-ril.so
+#rild.libargs=-d /dev/ttyUSB2
