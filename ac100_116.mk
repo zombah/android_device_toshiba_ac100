@@ -77,7 +77,8 @@ PRODUCT_COPY_FILES += \
 # Some files for 3G
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/ppp/ip-up:/system/etc/ppp/ip-up \
-    device/toshiba/paz00-common/ppp/ip-down:/system/etc/ppp/ip-down
+    device/toshiba/paz00-common/ppp/ip-down:/system/etc/ppp/ip-down \
+    device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs
 
 # Alsa config files
 #PRODUCT_COPY_FILES += \
@@ -159,7 +160,8 @@ PRODUCT_PACKAGES += \
     hciattach \
     hcitool \
     libncurses \
-    vim 
+    vim \
+    powerbtnd 
 
 $(call inherit-product-if-exists, vendor/toshiba/paz00/device-vendor.mk)
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
