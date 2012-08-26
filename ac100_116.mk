@@ -161,7 +161,7 @@ PRODUCT_PACKAGES += \
     hcitool \
     libncurses \
     vim \
-    powerbtnd 
+    powerbtnd
 
 $(call inherit-product-if-exists, vendor/toshiba/paz00/device-vendor.mk)
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
