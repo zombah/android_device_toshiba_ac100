@@ -7,6 +7,6 @@ rild.libargs=-d /dev/ttyACM1 -i wwan0
 # Powerbtnd behaviour
 poweroff.doubleclick=1
 # OTAUpdate
-otaupdater.otaid=tac100116
-otaupdater.otatime=20120827-0100
-otaupdater.otaver=cm9-beta2
+otaupdater.otaid=tac100
+otaupdater.otatime=20120906-1500
+otaupdater.otaver=cm9-beta3

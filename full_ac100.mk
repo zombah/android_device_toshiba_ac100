@@ -35,13 +35,13 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
-$(call inherit-product, device/toshiba/ac100_116/ac100_116.mk)
+$(call inherit-product, device/toshiba/ac100/ac100.mk)
 $(call inherit-product-if-exists, vendor/toshiba/paz00/paz00-vendor.mk)
 
-PRODUCT_NAME := full_ac100_116
-PRODUCT_DEVICE := ac100_116
+PRODUCT_NAME := full_ac100
+PRODUCT_DEVICE := ac100
 PRODUCT_BRAND := toshiba
-PRODUCT_MODEL := ac100_116
+PRODUCT_MODEL := ac100
 PRODUCT_MANUFACTURER := toshiba
 # Choose langs to include
 #PRODUCT_LOCALES := en_US ru_RU

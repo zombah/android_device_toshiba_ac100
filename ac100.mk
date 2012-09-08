@@ -20,8 +20,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/init.nv_dev_board.usb.rc:root/init.nv_dev_board.usb.rc \
     device/toshiba/paz00-common/prebuild/init.local.rc:system/etc/init.local.rc \
     device/toshiba/paz00-common/prebuild/ueventd.paz00.rc:root/ueventd.paz00.rc \
-    device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100_116.xml \
-    device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100_116 \
+    device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100.xml \
     device/toshiba/paz00-common/prebuild/media_profiles.xml:system/etc/media_profiles.xml \
     device/toshiba/paz00-common/prebuild/excluded-input-devices.xml:system/etc/excluded-input-devices.xml \
     device/toshiba/paz00-common/prebuild/egalax_i2c.idc:system/usr/idc/egalax_i2c.idc \
@@ -59,6 +58,7 @@ PRODUCT_COPY_FILES += \
 
 # Terminfo
 PRODUCT_COPY_FILES += \
+    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/c/cm \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/l/linux \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/s/screen \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/u/unknown \
@@ -78,31 +78,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/ppp/ip-up:/system/etc/ppp/ip-up \
     device/toshiba/paz00-common/ppp/ip-down:/system/etc/ppp/ip-down \
-    device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs
-
-# Alsa config files
-#PRODUCT_COPY_FILES += \
-#    device/toshiba/paz00-common/alsa/alsa.conf:/system/usr/share/alsa/alsa.conf \
-#    device/toshiba/paz00-common/alsa/cards/aliases.conf:/system/usr/share/alsa/cards/aliases.conf \
-#    device/toshiba/paz00-common/alsa/pcm/modem.conf:/system/usr/share/alsa/pcm/modem.conf \
-#    device/toshiba/paz00-common/alsa/pcm/iec958.conf:/system/usr/share/alsa/pcm/iec958.conf \
-#    device/toshiba/paz00-common/alsa/pcm/dpl.conf:/system/usr/share/alsa/pcm/dpl.conf \
-#    device/toshiba/paz00-common/alsa/pcm/surround50.conf:/system/usr/share/alsa/pcm/surround50.conf \
-#    device/toshiba/paz00-common/alsa/pcm/center_lfe.conf:/system/usr/share/alsa/pcm/center_lfe.conf \
-#    device/toshiba/paz00-common/alsa/pcm/surround51.conf:/system/usr/share/alsa/pcm/surround51.conf \
-#    device/toshiba/paz00-common/alsa/pcm/dsnoop.conf:/system/usr/share/alsa/pcm/dsnoop.conf \
-#    device/toshiba/paz00-common/alsa/pcm/side.conf:/system/usr/share/alsa/pcm/side.conf \
-#    device/toshiba/paz00-common/alsa/pcm/dmix.conf:/system/usr/share/alsa/pcm/dmix.conf \
-#    device/toshiba/paz00-common/alsa/pcm/default.conf:/system/usr/share/alsa/pcm/default.conf \
-#    device/toshiba/paz00-common/alsa/pcm/surround40.conf:/system/usr/share/alsa/pcm/surround40.conf \
-#    device/toshiba/paz00-common/alsa/pcm/surround41.conf:/system/usr/share/alsa/pcm/surround41.conf \
-#    device/toshiba/paz00-common/alsa/pcm/front.conf:/system/usr/share/alsa/pcm/front.conf \
-#    device/toshiba/paz00-common/alsa/pcm/rear.conf:/system/usr/share/alsa/pcm/rear.conf \
-#    device/toshiba/paz00-common/alsa/pcm/surround71.conf:/system/usr/share/alsa/pcm/surround71.conf
+    device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs \
+    device/toshiba/paz00-common/prebuild/wwlan_select.sh:/system/bin/wwlan_select.sh
 
 PRODUCT_PACKAGES := \
     static_busybox \
     make_ext4fs \
+    mkfs.vfat \
+    recovery_mkfs.vfat \
     setup_fs \
     com.android.future.usb.accessory \
     hwprops
@@ -159,6 +142,11 @@ PRODUCT_PACKAGES += \
     sensors.tegra \
     hciattach \
     hcitool \
+    hcidump \
+    avinfo \
+    hciconfig \
+    l2ping \
+    rfcomm \
     libncurses \
     vim \
     powerbtnd
