@@ -27,7 +27,10 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/egalax_ts.idc:system/usr/idc/egalax_ts.idc \
     device/toshiba/paz00-common/prebuild/01NVOptimalization:system/etc/init.d/01NVOptimalization \
     device/toshiba/paz00-common/prebuild/02PmDebug:system/etc/init.d/02PmDebug \
-    device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour \
+    device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour
+
+# Permissions
+PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/base/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
@@ -42,8 +45,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml 
 
-# Keychars
-# Keylayout
+# Keylayouts and keychars
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/keymaps/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
     device/toshiba/paz00-common/keymaps/gpio-keys.kcm:system/usr/keychars/gpio-keys.kcm \
@@ -81,6 +83,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs \
     device/toshiba/paz00-common/prebuild/wwlan_select.sh:/system/bin/wwlan_select.sh
 
+# Fs packages
 PRODUCT_PACKAGES := \
     static_busybox \
     make_ext4fs \
