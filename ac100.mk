@@ -58,6 +58,10 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/keymaps/nvec_keyboard.kl:system/usr/keylayout/nvec_keyboard.kl \
     device/toshiba/paz00-common/keymaps/NVEC_sleep_button.kl:system/usr/keylayout/NVEC_sleep_button.kl 
 
+# Input device config
+PRODUCT_COPY_FILES += \
+    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc
+
 # Terminfo
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/c/cm \
@@ -152,7 +156,8 @@ PRODUCT_PACKAGES += \
     rfcomm \
     libncurses \
     vim \
-    powerbtnd
+    powerbtnd \
+    chat
 
 $(call inherit-product-if-exists, vendor/toshiba/paz00/device-vendor.mk)
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
