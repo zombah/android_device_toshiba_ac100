@@ -8,5 +8,5 @@ rild.libargs=-d /dev/ttyACM1 -i wwan0
 poweroff.doubleclick=0
 # OTAUpdate
 otaupdater.otaid=tac100
-otaupdater.otatime=20120912-0100
+otaupdater.otatime=20120913-0100
 otaupdater.otaver=cm9-beta3
