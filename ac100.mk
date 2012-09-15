@@ -26,7 +26,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/egalax_i2c.idc:system/usr/idc/egalax_i2c.idc \
     device/toshiba/paz00-common/prebuild/egalax_ts.idc:system/usr/idc/egalax_ts.idc \
     device/toshiba/paz00-common/prebuild/01NVOptimalization:system/etc/init.d/01NVOptimalization \
-    device/toshiba/paz00-common/prebuild/02PmDebug:system/etc/init.d/02PmDebug \
+    device/toshiba/paz00-common/prebuild/02PmStuff:system/etc/init.d/02PmStuff \
     device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour
 
 # Permissions
@@ -157,7 +157,8 @@ PRODUCT_PACKAGES += \
     libncurses \
     vim \
     powerbtnd \
-    chat
+    chat \
+    screen 
 
 $(call inherit-product-if-exists, vendor/toshiba/paz00/device-vendor.mk)
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
