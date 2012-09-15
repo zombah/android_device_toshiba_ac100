@@ -137,6 +137,8 @@ PRODUCT_PACKAGES += \
     FolioParts \
     wmiconfig
 
+PRODUCT_PACKAGES += rild
+
 # Extra apps
 PRODUCT_PACKAGES += \
     libhuaweigeneric-ril \
