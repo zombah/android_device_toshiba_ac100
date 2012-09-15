@@ -12,3 +12,6 @@ BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardwar
 
 # Avoid generating of ldrcc instructions
 NEED_WORKAROUND_CORTEX_A9_745320 	:= true
+
+# 3G
+BOARD_MOBILEDATA_INTERFACE_NAME 	:= "wwan0"
