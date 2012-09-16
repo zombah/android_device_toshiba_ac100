@@ -12,4 +12,4 @@ poweroff.doubleclick=0
 # OTAUpdate
 otaupdater.otaid=tac100
 otaupdater.otatime=20120915-0100
-otaupdater.otaver=cm9-beta4
+otaupdater.otaver=cm10-alpha2
