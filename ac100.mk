@@ -68,6 +68,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/l/linux \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/s/screen \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/u/unknown \
+    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/v/vt100 \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/x/xterm 
 
 # Vold
