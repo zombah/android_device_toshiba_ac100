@@ -21,6 +21,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/init.local.rc:system/etc/init.local.rc \
     device/toshiba/paz00-common/prebuild/ueventd.paz00.rc:root/ueventd.paz00.rc \
     device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100.xml \
+    device/toshiba/paz00-common/prebuild/audio_policy.conf:system/etc/audio_policy.conf \
     device/toshiba/paz00-common/prebuild/media_profiles.xml:system/etc/media_profiles.xml \
     device/toshiba/paz00-common/prebuild/excluded-input-devices.xml:system/etc/excluded-input-devices.xml \
     device/toshiba/paz00-common/prebuild/egalax_i2c.idc:system/usr/idc/egalax_i2c.idc \
