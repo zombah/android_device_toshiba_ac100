@@ -137,6 +137,7 @@ PRODUCT_PACKAGES += \
     tinymix \
     audio.primary.tegra \
     audio.a2dp.default \
+    audio.usb.default \
     FolioParts \
     wmiconfig
 
@@ -159,6 +160,7 @@ PRODUCT_PACKAGES += \
     hciconfig \
     l2ping \
     rfcomm \
+    bttest \
     libncurses \
     vim \
     powerbtnd \
