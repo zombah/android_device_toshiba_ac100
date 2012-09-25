@@ -139,7 +139,6 @@ PRODUCT_PACKAGES += \
     audio.primary.tegra \
     audio.a2dp.default \
     audio.usb.default \
-    FolioParts \
     wmiconfig
 
 PRODUCT_PACKAGES += rild
@@ -150,23 +149,17 @@ PRODUCT_PACKAGES += \
     libmbm-ril \
     FileManager \
     dropbear \
-    VideoChatCameraTestApp \
-    RpcPerformance \
-    procstatlog \
     sensors.tegra \
     hciattach \
     hcitool \
-    hcidump \
-    avinfo \
-    hciconfig \
     l2ping \
-    rfcomm \
     bttest \
     libncurses \
     vim \
     powerbtnd \
     chat \
-    screen 
+    screen \
+    abootimg 
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -183,5 +176,5 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-$(call inherit-product-if-exists, vendor/toshiba/paz00/device-vendor.mk)
+$(call inherit-product-if-exists, vendor/toshiba/paz00/paz00-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
