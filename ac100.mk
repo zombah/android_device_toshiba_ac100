@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product-if-exists, vendor/toshiba/paz00/paz00-vendor.mk)
+
 # Base config files
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/init.paz00.rc:root/init.paz00.rc \
@@ -93,13 +97,13 @@ PRODUCT_COPY_FILES += \
 
 # Fs packages
 PRODUCT_PACKAGES := \
-    static_busybox \
     make_ext4fs \
     mkfs.vfat \
     recovery_mkfs.vfat \
     setup_fs \
     com.android.future.usb.accessory \
-    hwprops
+    hwprops \
+    e2fsck
 
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.opengles.version=131072 \
@@ -159,7 +163,8 @@ PRODUCT_PACKAGES += \
     powerbtnd \
     chat \
     screen \
-    abootimg 
+    abootimg \
+    LegacyCamera 
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -170,11 +175,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-flags=m=y \
     persist.sys.usb.config=mtp,adb
 
-# BT config
+# for bugmailer
+PRODUCT_PACKAGES += send_bug
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
+    system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
+    system/extras/bugmailer/send_bug:system/bin/send_bug
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-$(call inherit-product-if-exists, vendor/toshiba/paz00/paz00-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
