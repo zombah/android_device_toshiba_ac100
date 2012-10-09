@@ -102,7 +102,6 @@ PRODUCT_PACKAGES := \
     recovery_mkfs.vfat \
     setup_fs \
     com.android.future.usb.accessory \
-    hwprops \
     e2fsck
 
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -143,7 +142,8 @@ PRODUCT_PACKAGES += \
     audio.primary.tegra \
     audio.a2dp.default \
     audio.usb.default \
-    wmiconfig
+    wmiconfig \
+    FolioParts
 
 PRODUCT_PACKAGES += rild
 
