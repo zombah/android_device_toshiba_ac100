@@ -164,7 +164,7 @@ PRODUCT_PACKAGES += \
     chat \
     screen \
     abootimg \
-    LegacyCamera 
+    DisableSuspend
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
