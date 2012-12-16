@@ -33,3 +33,6 @@ BOARD_USES_LEGACY_CAMERA 		:= true
 # Custom name for recovery
 RECOVERY_NAME 				:= Toshiba AC100 CWM-based Recovery
 
+# Use tegra ICS video blobs
+BOARD_EGL_NEEDS_LEGACY_FB		:= true
+
