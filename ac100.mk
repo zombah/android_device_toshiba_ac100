@@ -164,7 +164,8 @@ PRODUCT_PACKAGES += \
     chat \
     screen \
     abootimg \
-    DisableSuspend
+    DisableSuspend \
+    mischelp
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
