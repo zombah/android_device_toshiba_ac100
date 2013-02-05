@@ -165,7 +165,8 @@ PRODUCT_PACKAGES += \
     screen \
     abootimg \
     DisableSuspend \
-    mischelp
+    mischelp \
+    power.grouper
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
