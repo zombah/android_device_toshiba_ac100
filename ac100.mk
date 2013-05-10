@@ -206,8 +206,8 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/drm/libWVStreamControlAPI_L1.so:system/vendor/lib/libWVStreamControlAPI_L1.so \
     device/toshiba/paz00-common/prebuild/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so \
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    drm.service.enabled=true
 
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
