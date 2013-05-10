@@ -40,16 +40,23 @@ PRODUCT_COPY_FILES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
+    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.xml:system/etc/permissions/android.hardware.touchscreen.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/native/data/etc/android.hardware.faketouch.xml:system/etc/permissions/android.hardware.faketouch.xml \
+    frameworks/native/data/etc/android.hardware.faketouch.multitouch.distinct.xml:system/etc/permissions/android.hardware.faketouch.multitouch.distinct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml 
 
@@ -68,7 +75,8 @@ PRODUCT_COPY_FILES += \
 
 # Input device config
 PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc
+    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc \
+    device/toshiba/paz00-common/prebuild/Fake_Touchscreen.idc:system/usr/idc/Fake_Touchscreen.idc
 
 # Terminfo
 PRODUCT_COPY_FILES += \
@@ -87,7 +95,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
     device/toshiba/paz00-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf
+    device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
 
 # Some files for 3G
 PRODUCT_COPY_FILES += \
@@ -167,7 +176,15 @@ PRODUCT_PACKAGES += \
     abootimg \
     DisableSuspend \
     mischelp \
-    power.grouper
+    power.tegra \
+    faketsd
+
+# Devel apps
+PRODUCT_PACKAGES += \
+    Stk \
+    Mms \
+    SpareParts \
+    Development
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
