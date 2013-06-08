@@ -6,9 +6,11 @@ TARGET_OTA_ASSERT_DEVICE                := paz00,ac100,GT-P7510
 
 # Kernel
 TARGET_KERNEL_SOURCE                   := kernel/toshiba/ac100
+#TARGET_KERNEL_SOURCE                   := kernel/toshiba/marvin24s-kernel
 #TARGET_KERNEL_CONFIG 			:= cyanogenmod_paz00_defconfig
 TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
 #TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
+#TARGET_KERNEL_CONFIG                   := paz00_android_debug_nonvec_defconfig
 
 #BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardware=paz00 tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2
 
@@ -28,7 +30,7 @@ NEED_WORKAROUND_CORTEX_A9_745320	:= true
 #TARGET_KERNEL_CUSTOM_TOOLCHAIN 		:= arm-eabi-4.4.3
 
 # Use legacy camery istead Gallery2
-BOARD_USES_LEGACY_CAMERA 		:= true
+#BOARD_USES_LEGACY_CAMERA 		:= true
 
 # Custom name for recovery
 RECOVERY_NAME 				:= Toshiba AC100 CWM-based Recovery
