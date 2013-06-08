@@ -36,7 +36,8 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/02PmStuff:system/etc/init.d/02PmStuff \
     device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour \
     device/toshiba/paz00-common/prebuild/04AdditionalModules:system/etc/init.d/04AdditionalModules \
-    device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh
+    device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh \
+    device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -96,7 +97,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
     device/toshiba/paz00-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
 
 # Some files for 3G
 PRODUCT_COPY_FILES += \
@@ -104,6 +105,22 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/ppp/ip-down:/system/etc/ppp/ip-down \
     device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs \
     device/toshiba/paz00-common/prebuild/wwlan_select.sh:/system/bin/wwlan_select.sh
+
+# Copy compat-drivers
+PRODUCT_COPY_FILES += \
+    device/toshiba/paz00-common/prebuild/compat-drivers/compat.ko:system/vendor/lib/modules/compat.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/cfg80211.ko:system/vendor/lib/modules/cfg80211.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/mac80211.ko:system/vendor/lib/modules/mac80211.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/rt2x00lib.ko:system/vendor/lib/modules/rt2x00lib.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/rt2x00usb.ko:system/vendor/lib/modules/rt2x00usb.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/rt2800lib.ko:system/vendor/lib/modules/rt2800lib.ko \
+    device/toshiba/paz00-common/prebuild/compat-drivers/rt2800usb.ko:system/vendor/lib/modules/rt2800usb.ko
+
+## Copy ralink driver
+#PRODUCT_COPY_FILES += \
+#    device/toshiba/paz00-common/prebuild/rt5370sta.ko:system/vendor/lib/modules/rt5370sta.ko \
+#    device/toshiba/paz00-common/prebuild/RT5370STA.dat:system/vendor/etc/RT5370STA.dat \
+#    device/toshiba/paz00-common/prebuild/RT5370STACard.dat:system/vendor/etc/RT5370STACard.dat
 
 # Fs packages
 PRODUCT_PACKAGES := \
@@ -129,7 +146,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += persist.sys.strictmode.visual=0
 
 # Resolution settings
 PRODUCT_CHARACTERISTICS := tablet
-PRODUCT_AAPT_CONFIG := xlarge mdpi
+PRODUCT_AAPT_CONFIG := xlarge mdpi hdpi xhdpi tvdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
 
@@ -190,9 +207,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enable_bypass=1 \
-    dalvik.vm.execution-mode=int:jit \
-    dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
     persist.sys.usb.config=mtp,adb
 
 # Blobs necessary for drm
@@ -204,10 +218,10 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/drm/libwvdrm_L1.so:system/vendor/lib/libwvdrm_L1.so \
     device/toshiba/paz00-common/prebuild/drm/libwvm.so:system/vendor/lib/libwvm.so \
     device/toshiba/paz00-common/prebuild/drm/libWVStreamControlAPI_L1.so:system/vendor/lib/libWVStreamControlAPI_L1.so \
-    device/toshiba/paz00-common/prebuild/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so \
+    device/toshiba/paz00-common/prebuild/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    drm.service.enabled=true
+PRODUCT_PROPERTY_OVERRIDES += \
+    drm.service.enabled=true
 
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
