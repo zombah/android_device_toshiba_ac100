@@ -194,7 +194,8 @@ PRODUCT_PACKAGES += \
     DisableSuspend \
     mischelp \
     power.tegra \
-    faketsd
+    faketsd \
+    hwcomposer.tegra.so
 
 # Devel apps
 PRODUCT_PACKAGES += \
