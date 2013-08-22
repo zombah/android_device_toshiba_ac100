@@ -17,6 +17,20 @@ TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
 # cmdline with extended debug info
 BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_console_suspend=1 androidboot.hardware=paz00 ignore_loglevel earlyprintk initcall_debug tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2 tegra_wdt.heartbeat=30 cpufreq.debug=7
 
+# Integrate compat-wireless building
+COMPAT_WIRELESS:
+	make -C device/toshiba/paz00-common/compat-wireless-3.2.5-1/ ARCH="arm" CROSS_COMPILE="arm-eabi-" clean
+	make -C device/toshiba/paz00-common/compat-wireless-3.2.5-1/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
+	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/compat/compat.ko $(KERNEL_MODULES_OUT)
+
+TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
+
 # Jb new additions
 #
 # Avoid generating of ldrcc instructions
