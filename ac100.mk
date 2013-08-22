@@ -106,16 +106,6 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs \
     device/toshiba/paz00-common/prebuild/wwlan_select.sh:/system/bin/wwlan_select.sh
 
-# Copy compat-drivers
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/compat-drivers/compat.ko:system/vendor/lib/modules/compat.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/cfg80211.ko:system/vendor/lib/modules/cfg80211.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/mac80211.ko:system/vendor/lib/modules/mac80211.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/rt2x00lib.ko:system/vendor/lib/modules/rt2x00lib.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/rt2x00usb.ko:system/vendor/lib/modules/rt2x00usb.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/rt2800lib.ko:system/vendor/lib/modules/rt2800lib.ko \
-    device/toshiba/paz00-common/prebuild/compat-drivers/rt2800usb.ko:system/vendor/lib/modules/rt2800usb.ko
-
 ## Copy ralink driver
 #PRODUCT_COPY_FILES += \
 #    device/toshiba/paz00-common/prebuild/rt5370sta.ko:system/vendor/lib/modules/rt5370sta.ko \
