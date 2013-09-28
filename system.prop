@@ -9,3 +9,9 @@ rild.libargs=-d /dev/ttyACM1 -i wwan0
 #rild.libargs=-d /dev/ttyUSB2
 # Powerbtnd behaviour
 poweroff.doubleclick=0
+
+# hold precise GC data, use SMP and turn off bytecode verification
+dalvik.vm.dexopt-flags=m=y,u=n,v=n,o=v
+
+# disable dalvik logspam
+dalvik.vm.debug.alloc=0
