@@ -19,15 +19,15 @@ BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_
 
 # Integrate compat-wireless building
 COMPAT_WIRELESS:
-	make -C device/toshiba/paz00-common/compat-wireless-3.2.5-1/ ARCH="arm" CROSS_COMPILE="arm-eabi-" clean
-	make -C device/toshiba/paz00-common/compat-wireless-3.2.5-1/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
-	mv device/toshiba/paz00-common/compat-wireless-3.2.5-1/compat/compat.ko $(KERNEL_MODULES_OUT)
+	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" clean
+	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT)
+	mv hardware/compat-wireless/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/compat/compat.ko $(KERNEL_MODULES_OUT)
 
 TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
