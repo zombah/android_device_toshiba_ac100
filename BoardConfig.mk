@@ -51,6 +51,7 @@ RECOVERY_NAME 				:= Toshiba AC100 CWM-based Recovery
 
 # Uboot
 #BOARD_CUSTOM_BOOTIMG_MK 		:= device/toshiba/ac100/uboot-bootimg.mk
+BOARD_USES_UBOOT_MULTIIMAGE 		:= false
 
 # RIL
 BOARD_MOBILEDATA_INTERFACE_NAME 	:= "wwan0"
