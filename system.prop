@@ -15,3 +15,6 @@ dalvik.vm.dexopt-flags=m=y,u=n,v=n,o=v
 
 # disable dalvik logspam
 dalvik.vm.debug.alloc=0
+
+#disable rfkill for upio
+ro.rfkilldisabled=1
