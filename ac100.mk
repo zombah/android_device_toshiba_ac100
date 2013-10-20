@@ -192,8 +192,10 @@ PRODUCT_PACKAGES += \
     power.tegra \
     faketsd 
 
+ifeq ($(BOARD_USES_CUSTOM_HWC),true)
 # Copy hwcomposer wrapper
 PRODUCT_PACKAGES += hwcomposer.tegra
+endif
 
 # Devel apps
 PRODUCT_PACKAGES += \
