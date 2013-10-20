@@ -23,6 +23,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/init.paz00.rc:root/init.paz00.rc \
     device/toshiba/paz00-common/prebuild/init.nv_dev_board.usb.rc:root/init.nv_dev_board.usb.rc \
     device/toshiba/paz00-common/prebuild/init.local.rc:system/etc/init.local.rc \
+    device/toshiba/paz00-common/prebuild/init.sh:system/etc/init.sh \
     device/toshiba/paz00-common/prebuild/ueventd.paz00.rc:root/ueventd.paz00.rc \
     device/toshiba/paz00-common/prebuild/fstab.ac100:root/fstab.ac100 \
     device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100.xml \
@@ -39,6 +40,9 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/04AdditionalModules:system/etc/init.d/04AdditionalModules \
     device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh \
     device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
+
+# Copy own init.rc for debug reasons
+#PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -98,7 +102,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
     device/toshiba/paz00-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
 
 # Some files for 3G
 PRODUCT_COPY_FILES += \
@@ -186,8 +190,10 @@ PRODUCT_PACKAGES += \
     DisableSuspend \
     mischelp \
     power.tegra \
-    faketsd \
-    hwcomposer.tegra.so
+    faketsd 
+
+# Copy hwcomposer wrapper
+PRODUCT_PACKAGES += hwcomposer.tegra
 
 # Devel apps
 PRODUCT_PACKAGES += \
