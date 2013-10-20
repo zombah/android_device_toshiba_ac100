@@ -50,7 +50,9 @@ NEED_WORKAROUND_CORTEX_A9_745320	:= true
 RECOVERY_NAME 				:= Toshiba AC100 CWM-based Recovery
 
 # Uboot
-#BOARD_CUSTOM_BOOTIMG_MK 		:= device/toshiba/ac100/uboot-bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK 		:= device/toshiba/ac100/uboot-bootimg.mk
+# Keep kernel name as zImage
+BOARD_USES_UBOOT			:= false
 BOARD_USES_UBOOT_MULTIIMAGE 		:= false
 
 # RIL
