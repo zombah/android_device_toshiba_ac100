@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011 The Cyanogenmod Project
+# Copyright (C) 2012 The Cyanogenmod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,95 +28,37 @@
 #
 LOCAL_PATH := $(call my-dir)
 
-PRODUCT_VERSION = CM-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)
-INTERNAL_UBOOT_IMAGENAME := $(PRODUCT_VERSION) $(TARGET_DEVICE) Ramdisk
+ifneq ($(strip $(TARGET_NO_KERNEL)),true)
 
-INTERNAL_URAMDISKIMAGE_ARGS := -A ARM -O Linux -T RAMDisk -C none -n "$(INTERNAL_UBOOT_IMAGENAME)" -d $(BUILT_RAMDISK_TARGET)
-ZIP_SAVE_UBOOTIMG_ARGS := $(INTERNAL_URAMDISKIMAGE_ARGS)
-BUILT_UBOOT_RAMDISK_TARGET := $(BUILT_RAMDISK_TARGET:%.img=%.ub)
+    INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
 
-$(BUILT_UBOOT_RAMDISK_TARGET): $(INSTALLED_RAMDISK_TARGET) $(MKIMAGE)
-	$(MKIMAGE) $(INTERNAL_URAMDISKIMAGE_ARGS) $@
-	@echo ----- Made uboot ramdisk -------- $@
+    INTERNAL_UMULTIIMAGE_ARGS := -A arm -O linux -T ramdisk -C none -a 0x40800000 -n "ramdisk"
 
-INSTALLED_RAMDISK_TARGET := $(BUILT_UBOOT_RAMDISK_TARGET)
+    INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/ramdisk-uboot.img
 
-ifeq ($(BOARD_USES_UBOOT_MULTIIMAGE),true)
-    ifneq ($(strip $(TARGET_NO_KERNEL)),true)
+    INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk.img $(INSTALLED_RAMDISK_TARGET)
 
-        INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
+$(INSTALLED_RAMDISK_TARGET): $(MKIMAGE) $(INTERNAL_RAMDISK_FILES) $(BUILT_RAMDISK_TARGET)
+			$(MKIMAGE) $(INTERNAL_UMULTIIMAGE_ARGS)
 
-        INTERNAL_UBOOT_MULTIIMAGENAME := $(PRODUCT_VERSION)  $(TARGET_DEVICE) Multiboot
+$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
+			$(MKBOOTIMG) --kernel $(INSTALLED_KERNEL_TARGET) --ramdisk $(PRODUCT_OUT)/ramdisk-uboot.img -o $@
+			@echo ----- Made fastboot image -------- $@
 
-        INTERNAL_UMULTIIMAGE_ARGS := -A ARM -O Linux -T multi -C none -n "$(INTERNAL_UBOOT_MULTIIMAGENAME)"
+endif #!TARGET_NO_KERNEL
 
-        BOARD_UBOOT_ENTRY := $(strip $(BOARD_UBOOT_ENTRY))
-        ifdef BOARD_UBOOT_ENTRY
-            INTERNAL_UMULTIIMAGE_ARGS += -e $(BOARD_UBOOT_ENTRY)
-        endif
+ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
+    INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
+    recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
+    recovery_kernel := $(INSTALLED_KERNEL_TARGET)
 
-        BOARD_UBOOT_LOAD := $(strip $(BOARD_UBOOT_LOAD))
-        ifdef BOARD_UBOOT_LOAD
-            INTERNAL_UMULTIIMAGE_ARGS += -a $(BOARD_UBOOT_LOAD)
-        endif
+    RCV_INTERNAL_UMULTIIMAGE_ARGS := -A arm -O linux -T ramdisk -C none -a 0x40800000 -n "ramdisk"
 
-        INTERNAL_UMULTIIMAGE_ARGS += -d $(INSTALLED_KERNEL_TARGET):$(BUILT_UBOOT_RAMDISK_TARGET)
-        ZIP_SAVE_UBOOTIMG_ARGS := $(INTERNAL_UMULTIIMAGE_ARGS)
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKIMAGE) $(INTERNAL_RAMDISK_FILES) $(BUILT_UBOOT_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
-			$(MKIMAGE) $(INTERNAL_UMULTIIMAGE_ARGS) $@
-			@echo ----- Made uboot multiimage -------- $@
+    RCV_INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk-recovery.img $(PRODUCT_OUT)/recovery-uboot.img
 
-    endif #!TARGET_NO_KERNEL
-else # Seperate uboot images kernel/ramdisk
-    # HACK: Redefine the bootimage target to just build the ramdisk
-$(INSTALLED_BOOTIMAGE_TARGET): $(BUILT_UBOOT_RAMDISK_TARGET)
-endif
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_BOOTIMAGE_TARGET) $(MKIMAGE) $(recovery_ramdisk) $(recovery_kernel)
+			$(MKIMAGE) $(RCV_INTERNAL_UMULTIIMAGE_ARGS)
+			$(MKBOOTIMG) --kernel $(recovery_kernel) --ramdisk $(PRODUCT_OUT)/recovery-uboot.img -o $@
+			@echo ----- Made fastboot recovery image -------- $@
+endif #!TARGET_NO_RECOVERY
 
-#
-# Recovery Image
-#
-INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
-recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
-INTERNAL_RECOVERYRAMDISK_IMAGENAME := CWM $(TARGET_DEVICE) Ramdisk
-INTERNAL_RECOVERYRAMDISKIMAGE_ARGS := -A ARM -O Linux -T RAMDisk -C none -n "$(INTERNAL_RECOVERYRAMDISK_IMAGENAME)" -d $(recovery_ramdisk)
-recovery_uboot_ramdisk := $(recovery_ramdisk:%.img=%.ub)
-
-$(recovery_uboot_ramdisk): $(MKIMAGE) $(recovery_ramdisk)
-	@echo ----- Making recovery image ------
-	$(MKIMAGE) $(INTERNAL_RECOVERYRAMDISKIMAGE_ARGS) $@
-	@echo ----- Made recovery uboot ramdisk -------- $@
-
-ifeq ($(BOARD_USES_UBOOT_MULTIIMAGE),true)
-    $(warning We are here.)
-    INTERNAL_RECOVERYIMAGE_IMAGENAME := CWM $(TARGET_DEVICE) Multiboot
-    INTERNAL_RECOVERYIMAGE_ARGS := -A arm -T multi -C none -n "$(INTERNAL_RECOVERYIMAGE_IMAGENAME)"
-
-    BOARD_UBOOT_ENTRY := $(strip $(BOARD_UBOOT_ENTRY))
-    ifdef BOARD_UBOOT_ENTRY
-        INTERNAL_RECOVERYIMAGE_ARGS += -e $(BOARD_UBOOT_ENTRY)
-    endif
-
-# XXX somehow even though we don't define BOARD_UBOOT_LOAD, it's still
-# detected here and produces empty -a argument that confuses mkimage
-#    BOARD_UBOOT_LOAD := $(strip $(BOARD_UBOOT_LOAD))    
-#    ifdef BOARD_UBOOT_LOAD
-#        INTERNAL_RECOVERYIMAGE_ARGS += -a $(BOARD_UBOOT_LOAD)
-#    endif
-
-    recovery_kernel := $(INSTALLED_KERNEL_TARGET) # hard-coded for tenderloin
-
-    INTERNAL_RECOVERYIMAGE_ARGS += -d $(strip $(recovery_kernel)):$(strip $(recovery_uboot_ramdisk))
-
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKIMAGE) $(recovery_uboot_ramdisk) $(recovery_kernel)
-	$(MKIMAGE) $(INTERNAL_RECOVERYIMAGE_ARGS) $@
-	@echo ----- Made recovery uboot multiimage -------- $@
-
-else #!BOARD_USES_UBOOT_MULTIIMAGE
-    # If we are not on a multiimage platform lets zip the kernel with the ramdisk
-    # for Rom Manager
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_uboot_ramdisk) $(recovery_kernel)
-	$(hide) rm -f $@
-	zip -qDj $@ $(recovery_uboot_ramdisk) $(recovery_kernel)
-	@echo ----- Made recovery image \(zip\) -------- $@
-
-endif
