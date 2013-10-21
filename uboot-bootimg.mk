@@ -34,31 +34,38 @@ ifneq ($(strip $(TARGET_NO_KERNEL)),true)
 
     INTERNAL_UMULTIIMAGE_ARGS := -A arm -O linux -T ramdisk -C none -a 0x40800000 -n "ramdisk"
 
-    INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/ramdisk-uboot.img
+    INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd.gz
+
+    INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/zImage
 
     INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk.img $(INSTALLED_RAMDISK_TARGET)
 
 $(INSTALLED_RAMDISK_TARGET): $(MKIMAGE) $(INTERNAL_RAMDISK_FILES) $(BUILT_RAMDISK_TARGET)
 			$(MKIMAGE) $(INTERNAL_UMULTIIMAGE_ARGS)
 
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
-			$(MKBOOTIMG) --kernel $(INSTALLED_KERNEL_TARGET) --ramdisk $(PRODUCT_OUT)/ramdisk-uboot.img -o $@
-			@echo ----- Made fastboot image -------- $@
+$(INSTALLED_BOOTIMAGE_TARGET): $(INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
+			$(hide) rm -f $@
+			zip -qDj $@ $(PRODUCT_OUT)/initrd.gz $(INSTALLED_KERNEL_TARGET)
+			@echo ----- Made boot image \(zip\) -------- $@
 
 endif #!TARGET_NO_KERNEL
 
 ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
     INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
     recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
-    recovery_kernel := $(INSTALLED_KERNEL_TARGET)
+    
+    RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery.gz
 
     RCV_INTERNAL_UMULTIIMAGE_ARGS := -A arm -O linux -T ramdisk -C none -a 0x40800000 -n "ramdisk"
 
-    RCV_INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk-recovery.img $(PRODUCT_OUT)/recovery-uboot.img
+    RCV_INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk-recovery.img $(RCV_INSTALLED_RAMDISK_TARGET)
 
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_BOOTIMAGE_TARGET) $(MKIMAGE) $(recovery_ramdisk) $(recovery_kernel)
+$(RCV_INSTALLED_RAMDISK_TARGET): $(MKBOOTIMG) $(INSTALLED_BOOTIMAGE_TARGET) $(MKIMAGE) $(recovery_ramdisk) $(INSTALLED_KERNEL_TARGET)
 			$(MKIMAGE) $(RCV_INTERNAL_UMULTIIMAGE_ARGS)
-			$(MKBOOTIMG) --kernel $(recovery_kernel) --ramdisk $(PRODUCT_OUT)/recovery-uboot.img -o $@
-			@echo ----- Made fastboot recovery image -------- $@
+
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
+			$(hide) rm -f $@
+			zip -qDj $@ $(PRODUCT_OUT)/initrd-recovery.gz $(INSTALLED_KERNEL_TARGET)
+			@echo ----- Made recovery image \(zip\) -------- $@
 endif #!TARGET_NO_RECOVERY
 
