@@ -44,6 +44,9 @@ PRODUCT_COPY_FILES += \
 # Copy own init.rc for debug reasons
 #PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
 
+# Copy u-boot boot.scr source
+PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/boot.cmd:system/etc/boot.cmd
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
