@@ -61,3 +61,6 @@ BOARD_MOBILEDATA_INTERFACE_NAME 	:= "wwan0"
 # Test
 BOARD_FIRST_CAMERA_FRONT_FACING 	:= true
 
+# Custom release tools for uMulti inclusion
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/toshiba/ac100/releasetools/ac100_ota_from_target_files
+
