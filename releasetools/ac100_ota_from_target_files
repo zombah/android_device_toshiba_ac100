@@ -373,6 +373,9 @@ fi
   common.ZipWriteStr(output_zip, "recovery/etc/install-recovery.sh", sh)
   return Item.Get("system/etc/install-recovery.sh", dir=False)
 
+def CopyBootFiles(input_zip, output_zip):
+    output_zip.writestr("boot/boot/zImage", input_zip.read("BOOT/kernel"))
+    output_zip.writestr("boot/boot/initrd.gz", input_zip.read("BOOT/ramdisk.img"))
 
 def WriteFullOTAPackage(input_zip, output_zip):
   # TODO: how to determine this?  We don't know what version it will
@@ -436,7 +439,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   Item.Get("system").SetPermissions(script)
 
   common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
-  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
+#  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
 
   if OPTIONS.backuptool:
@@ -444,7 +447,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.RunBackup("restore")
 
   script.ShowProgress(0.2, 10)
-  script.WriteRawImage("/boot", "boot.img")
+#  script.WriteRawImage("/boot", "boot.img")
+
+  CopyBootFiles(input_zip, output_zip)
+
+  script.Mount("/boot")
+  script.UnpackPackageDir("boot", "/boot")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
