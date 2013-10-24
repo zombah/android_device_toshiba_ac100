@@ -278,3 +278,8 @@ class EdifyGenerator(object):
       data = open(os.path.join(input_path, "updater")).read()
     common.ZipWriteStr(output_zip, "META-INF/com/google/android/update-binary",
                        data, perms=0755)
+
+  def UnpackPackageFile(self, src, dst):
+      """Unpack a given file from the OTA package into the given
+     destination file."""
+      self.script.append('package_extract_file("%s", "%s");' % (src, dst)) 
