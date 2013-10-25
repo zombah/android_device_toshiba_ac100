@@ -54,8 +54,9 @@ ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
     INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
     recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
     recovery_bootscr := $(PRODUCT_OUT)/system/etc/boot.cmd
+    recovery_kernel  := $(PRODUCT_OUT)/zImage-recovery-cm-10-1
     
-    RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery.gz
+    RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery-cm-10-1.gz
 
     RCV_INSTALLED_BOOTSCR_TARGET := $(PRODUCT_OUT)/boot.scr
 
@@ -75,7 +76,8 @@ $(RCV_INSTALLED_RAMDISK_TARGET): $(MKBOOTIMG) $(INSTALLED_BOOTIMAGE_TARGET) $(MK
 
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET) $(RCV_INSTALLED_BOOTSCR_TARGET)
 			$(hide) rm -f $@
-			zip -qDj $@ $(PRODUCT_OUT)/initrd-recovery.gz $(INSTALLED_KERNEL_TARGET) $(RCV_INSTALLED_BOOTSCR_TARGET)
+			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(recovery_kernel)
+			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(recovery_kernel) $(RCV_INSTALLED_BOOTSCR_TARGET)
 			@echo ----- Made recovery image \(zip\) -------- $@
 endif #!TARGET_NO_RECOVERY
 
