@@ -36,16 +36,18 @@ ifneq ($(strip $(TARGET_NO_KERNEL)),true)
 
     INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd.gz
 
-    INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/zImage
-
     INTERNAL_UMULTIIMAGE_ARGS += -d $(PRODUCT_OUT)/ramdisk.img $(INSTALLED_RAMDISK_TARGET)
 
-$(INSTALLED_RAMDISK_TARGET): $(MKIMAGE) $(INTERNAL_RAMDISK_FILES) $(BUILT_RAMDISK_TARGET)
+$(INSTALLED_RAMDISK_TARGET): $(MKIMAGE) \
+			$(INTERNAL_RAMDISK_FILES) \
+			$(BUILT_RAMDISK_TARGET)
+			@echo -e ${CL_CYN}"----- Making boot ramdisk ------"${CL_RST}
 			$(MKIMAGE) $(INTERNAL_UMULTIIMAGE_ARGS)
 
 $(INSTALLED_BOOTIMAGE_TARGET): $(INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET)
 			$(hide) rm -f $@
-			zip -qDj $@ $(PRODUCT_OUT)/initrd.gz $(INSTALLED_KERNEL_TARGET)
+			$(hide) cp $(INSTALLED_RAMDISK_TARGET) $(PRODUCT_OUT)/zImage
+			zip -qDj $@ $(PRODUCT_OUT)/initrd.gz $(PRODUCT_OUT)/zImage
 			@echo ----- Made boot image \(zip\) -------- $@
 
 endif #!TARGET_NO_KERNEL
@@ -54,7 +56,6 @@ ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
     INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
     recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
     recovery_bootscr := $(PRODUCT_OUT)/system/etc/boot.cmd
-    recovery_kernel  := $(PRODUCT_OUT)/zImage-recovery-cm-10-1
     
     RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery-cm-10-1.gz
 
@@ -68,16 +69,27 @@ ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
 
     RCV_INTERNAL_BOOTSCR_ARGS += -d $(PRODUCT_OUT)/system/etc/boot.cmd $(RCV_INSTALLED_BOOTSCR_TARGET)
 
-$(RCV_INSTALLED_BOOTSCR_TARGET): $(MKIMAGE) $(recovery_bootscr)  
+$(RCV_INSTALLED_BOOTSCR_TARGET): $(MKIMAGE) \
+			$(recovery_bootscr)  
+			@echo -e ${CL_CYN}"----- Making uboot boot.scr ------"${CL_RST}
 			$(MKIMAGE) $(RCV_INTERNAL_BOOTSCR_ARGS)
 
-$(RCV_INSTALLED_RAMDISK_TARGET): $(MKBOOTIMG) $(INSTALLED_BOOTIMAGE_TARGET) $(MKIMAGE) $(recovery_ramdisk) $(INSTALLED_KERNEL_TARGET)
+$(RCV_INSTALLED_RAMDISK_TARGET): $(MKBOOTIMG) \
+			$(INSTALLED_BOOTIMAGE_TARGET) \
+			$(MKIMAGE) \
+			$(recovery_ramdisk) \
+			$(INSTALLED_KERNEL_TARGET)
+			@echo -e ${CL_CYN}"----- Making recovery ramdisk ------"${CL_RST}
 			$(MKIMAGE) $(RCV_INTERNAL_UMULTIIMAGE_ARGS)
+			@echo -e ${CL_CYN}"----- Made recovery ramdisk ------"${CL_RST}
 
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) $(INSTALLED_KERNEL_TARGET) $(RCV_INSTALLED_BOOTSCR_TARGET)
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) \
+			$(INSTALLED_KERNEL_TARGET) \
+			$(RCV_INSTALLED_BOOTSCR_TARGET)
+			@echo -e ${CL_CYN}"----- Making recovery image ------"${CL_RST}
 			$(hide) rm -f $@
-			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(recovery_kernel)
-			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(recovery_kernel) $(RCV_INSTALLED_BOOTSCR_TARGET)
+			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1
+			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1 $(RCV_INSTALLED_BOOTSCR_TARGET)
 			@echo ----- Made recovery image \(zip\) -------- $@
 endif #!TARGET_NO_RECOVERY
 
