@@ -19,15 +19,16 @@ BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_
 
 # Integrate compat-wireless building
 COMPAT_WIRELESS:
-	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" clean
-	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT)
-	mv hardware/compat-wireless/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
-	mv hardware/compat-wireless/compat/compat.ko $(KERNEL_MODULES_OUT)
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) mrproper
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) defconfig-paz00
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) modules 
+	mv hardware/backports/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
 
 TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
