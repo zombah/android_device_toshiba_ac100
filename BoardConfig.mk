@@ -17,11 +17,14 @@ TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
 # cmdline with extended debug info
 BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_console_suspend=1 androidboot.hardware=paz00 ignore_loglevel earlyprintk initcall_debug tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2 tegra_wdt.heartbeat=30 cpufreq.debug=7
 
+BOARD_USES_COMPAT_WIRELESS		:= true
+
+ifeq ($(BOARD_USES_COMPAT_WIRELESS),false)
 # Integrate compat-wireless building
 COMPAT_WIRELESS:
-	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) mrproper
-	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) defconfig-paz00
-	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" -j2 KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) modules 
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) mrproper
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) defconfig-paz00
+	make -C hardware/backports/ ARCH="arm" CROSS_COMPILE="arm-eabi-" KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) modules 
 	mv hardware/backports/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
@@ -29,6 +32,19 @@ COMPAT_WIRELESS:
 	mv hardware/backports/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
+endif
+ifeq ($(BOARD_USES_COMPAT_WIRELESS),true)
+COMPAT_WIRELESS:
+	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" clean
+	make -C hardware/compat-wireless/ ARCH="arm" CROSS_COMPILE="arm-eabi-" KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT)
+	mv hardware/compat-wireless/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800usb.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
+	mv hardware/compat-wireless/compat/compat.ko $(KERNEL_MODULES_OUT)
+endif
 
 TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
