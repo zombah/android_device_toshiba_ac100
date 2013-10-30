@@ -170,8 +170,6 @@ PRODUCT_PACKAGES += \
     wmiconfig \
     FolioParts
 
-PRODUCT_PACKAGES += rild
-
 # Extra apps
 PRODUCT_PACKAGES += \
     libhuaweigeneric-ril \
@@ -199,10 +197,15 @@ PRODUCT_PACKAGES += hwcomposer.tegra
 
 # Devel apps
 PRODUCT_PACKAGES += \
-    Stk \
-    Mms \
     SpareParts \
     Development
+
+# Voice stuff
+PRODUCT_PACKAGES += \
+    Mms \
+    Stk \
+    rild \
+    BasicSmsReceiver
 
 # Extra overrides
 PRODUCT_PROPERTY_OVERRIDES += \
