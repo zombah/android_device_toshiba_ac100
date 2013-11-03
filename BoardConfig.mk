@@ -8,14 +8,14 @@ TARGET_OTA_ASSERT_DEVICE                := paz00,ac100,GT-P7510
 TARGET_KERNEL_SOURCE                   := kernel/toshiba/ac100
 #TARGET_KERNEL_SOURCE                   := kernel/toshiba/marvin24s-kernel
 #TARGET_KERNEL_CONFIG 			:= cyanogenmod_paz00_defconfig
-TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
-#TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
+#TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
+TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
 #TARGET_KERNEL_CONFIG                   := paz00_android_debug_nonvec_defconfig
 
-#BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardware=paz00 tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2
+BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardware=paz00
 
 # cmdline with extended debug info
-BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_console_suspend=1 androidboot.hardware=paz00 ignore_loglevel earlyprintk initcall_debug tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2 tegra_wdt.heartbeat=30 cpufreq.debug=7
+#BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_console_suspend=1 androidboot.hardware=paz00 ignore_loglevel earlyprintk initcall_debug tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2 tegra_wdt.heartbeat=30 cpufreq.debug=7
 
 BOARD_USES_COMPAT_WIRELESS		:= true
 
@@ -81,3 +81,5 @@ BOARD_FIRST_CAMERA_FRONT_FACING 	:= true
 # Custom release tools for uMulti inclusion
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/toshiba/ac100/releasetools/ac100_ota_from_target_files
 
+# Use build_number tag for ota file
+BUILD_NUMBER				:= $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)
