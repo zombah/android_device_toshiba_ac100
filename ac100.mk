@@ -157,7 +157,6 @@ PRODUCT_PACKAGES += \
     lights.tegra \
     com.android.future.usb.accessory \
     camera.tegra \
-    libpkip \
     libaudioutils \
     tinyplay \
     tinycap \
@@ -174,7 +173,6 @@ PRODUCT_PACKAGES += \
     libmbm-ril \
     FileManager \
     dropbear \
-    sensors.tegra \
     hciattach \
     hcitool \
     l2ping \
@@ -183,12 +181,7 @@ PRODUCT_PACKAGES += \
     vim \
     powerbtnd \
     chat \
-    screen \
-    abootimg \
-    DisableSuspend \
-    mischelp \
-    power.tegra \
-    faketsd 
+    power.tegra 
 
 # Copy hwcomposer wrapper
 PRODUCT_PACKAGES += hwcomposer.tegra
