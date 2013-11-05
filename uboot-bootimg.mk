@@ -90,6 +90,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) \
 			$(hide) rm -f $@
 			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1
 			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1 $(RCV_INSTALLED_BOOTSCR_TARGET)
+			$(hide) cp $@ $(PRODUCT_OUT)/recovery-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d).img
 			@echo ----- Made recovery image \(zip\) -------- $@
 endif #!TARGET_NO_RECOVERY
 
