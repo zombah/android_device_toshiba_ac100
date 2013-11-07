@@ -94,10 +94,6 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/v/vt100 \
     device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/x/xterm 
 
-# Vold
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/vold.fstab:system/etc/vold.fstab
-
 # WiFi/BT Firmware
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
