@@ -25,7 +25,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/init.local.rc:system/etc/init.local.rc \
     device/toshiba/paz00-common/prebuild/init.sh:system/etc/init.sh \
     device/toshiba/paz00-common/prebuild/ueventd.paz00.rc:root/ueventd.paz00.rc \
-    device/toshiba/paz00-common/prebuild/fstab.ac100:root/fstab.ac100 \
+    device/toshiba/paz00-common/prebuild/fstab.paz00:root/fstab.paz00 \
     device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100.xml \
     device/toshiba/paz00-common/prebuild/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/toshiba/paz00-common/prebuild/audio_policy.conf:system/etc/audio_policy.conf \
