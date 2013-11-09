@@ -39,7 +39,8 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour \
     device/toshiba/paz00-common/prebuild/04AdditionalModules:system/etc/init.d/04AdditionalModules \
     device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh \
-    device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
+    device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh \
+    device/toshiba/paz00-common/prebuild/05Pppd:system/etc/init.d/05Pppd
 
 # Copy own init.rc for debug reasons
 #PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
