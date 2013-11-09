@@ -3,7 +3,7 @@ $(call inherit-product, device/toshiba/ac100/full_ac100.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
-$(call inherit-product, vendor/cm/config/gsm.mk)
+$(call inherit-product, vendor/cm/config/telephony.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=paz00 BUILD_FINGERPRINT="motorola/tervigon/wingray:4.1.1/JRO03H/405518:user/release-keys" PRIVATE_BUILD_DESC="tervigon-user 4.1.1 JRO03H 405518 release-keys"
 
