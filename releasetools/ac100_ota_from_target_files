@@ -85,8 +85,14 @@ try:
 except ImportError:
   from sha import sha as sha1
 
-import ac100_common as common
-import ac100_edify_generator as edify_generator
+LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
+
+# Add releasetools directory to python path
+sys.path.append(RELEASETOOLS_DIR)
+
+import common
+import edify_generator
 
 OPTIONS = common.OPTIONS
 OPTIONS.package_key = None
