@@ -57,7 +57,7 @@ ifneq ($(strip $(TARGET_NO_RECOVERY)),true)
     recovery_ramdisk := $(PRODUCT_OUT)/ramdisk-recovery.img
     recovery_bootscr := $(PRODUCT_OUT)/system/etc/boot.cmd
     
-    RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery-cm-10-1.gz
+    RCV_INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/initrd-recovery-cm-$(PRODUCT_VERSION_MAJOR)-$(PRODUCT_VERSION_MINOR).gz
 
     RCV_INSTALLED_BOOTSCR_TARGET := $(PRODUCT_OUT)/boot.scr
 
@@ -88,8 +88,8 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(RCV_INSTALLED_RAMDISK_TARGET) \
 			$(RCV_INSTALLED_BOOTSCR_TARGET)
 			@echo -e ${CL_CYN}"----- Making recovery image ------"${CL_RST}
 			$(hide) rm -f $@
-			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1
-			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-10-1 $(RCV_INSTALLED_BOOTSCR_TARGET)
+			$(hide) cp $(INSTALLED_KERNEL_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-$(PRODUCT_VERSION_MAJOR)-$(PRODUCT_VERSION_MINOR)
+			zip -qDj $@ $(RCV_INSTALLED_RAMDISK_TARGET) $(PRODUCT_OUT)/zImage-recovery-cm-$(PRODUCT_VERSION_MAJOR)-$(PRODUCT_VERSION_MINOR) $(RCV_INSTALLED_BOOTSCR_TARGET)
 			$(hide) cp $@ $(PRODUCT_OUT)/recovery-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d).img
 			@echo ----- Made recovery image \(zip\) -------- $@
 endif #!TARGET_NO_RECOVERY
