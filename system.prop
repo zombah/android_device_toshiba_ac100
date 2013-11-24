@@ -24,10 +24,4 @@ sys.mem.max_hidden_apps=5
 
 # some gfx settings for test
 ro.bq.gpu_to_cpu_unsupported=1
-hwui.render_dirty_regions=false
 
-# variables from xda for test
-ro.kernel.android.checkjni=0
-debug.performance.tuning=1
-video.accelerate.hw=1
-debug.sf.hw=1
