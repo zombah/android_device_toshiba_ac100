@@ -25,3 +25,5 @@ sys.mem.max_hidden_apps=5
 # some gfx settings for test
 ro.bq.gpu_to_cpu_unsupported=1
 
+# don't preload OpenGL in Zygote, the Tegra drivers do not like it
+ro.zygote.disable_gl_preload=true
