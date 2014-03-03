@@ -380,8 +380,8 @@ fi
   return Item.Get("system/etc/install-recovery.sh", dir=False)
 
 def CopyBootFiles(input_zip, output_zip):
-    output_zip.writestr("boot/boot/zImage-boot-cm-10-2", input_zip.read("BOOT/kernel"))
-    output_zip.writestr("boot/boot/initrd-boot-cm-10-2.gz", input_zip.read("BOOT/ramdisk.img"))
+    output_zip.writestr("boot/boot/zImage-boot-cm-11-0", input_zip.read("BOOT/kernel"))
+    output_zip.writestr("boot/boot/initrd-boot-cm-11-0.gz", input_zip.read("BOOT/ramdisk.img"))
 
 def WriteFullOTAPackage(input_zip, output_zip):
   # TODO: how to determine this?  We don't know what version it will
