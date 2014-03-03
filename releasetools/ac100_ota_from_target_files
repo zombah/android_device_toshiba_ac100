@@ -219,7 +219,7 @@ class Item:
         i.uid = int(uid)
         i.gid = int(gid)
         i.mode = int(mode, 8)
-	i.selabel = selabel
+        i.selabel = selabel
         i.capabilities = capabilities
         if i.dir:
           i.children.sort(key=lambda i: i.name)
@@ -808,7 +808,7 @@ def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
   #  script.Print("Unpacking new recovery...")
   #  script.UnpackPackageDir("recovery", "/system")
 
-   if len(renames) > 0:
+  if len(renames) > 0:
     script.Print("Renaming files...")
 
   for src in renames:
