@@ -184,7 +184,9 @@ PRODUCT_PACKAGES += \
     power.tegra 
 
 # Copy hwcomposer wrapper
+ifeq ($(BOARD_USES_TEGRA_HWC),true)
 PRODUCT_PACKAGES += hwcomposer.tegra
+endif
 
 # Devel apps
 PRODUCT_PACKAGES += \
