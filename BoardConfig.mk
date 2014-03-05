@@ -81,3 +81,7 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/toshiba/ac100/releasetools/a
 
 # Use build_number tag for ota file
 BUILD_NUMBER				:= $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)
+
+# CM 11.0 specific
+BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
+
