@@ -50,8 +50,6 @@ TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
 # Jb new additions
 #
-# Avoid generating of ldrcc instructions
-NEED_WORKAROUND_CORTEX_A9_745320	:= true
 
 # Use legacy ICS audio blobs
 #USES_AUDIO_LEGACY			:= true
