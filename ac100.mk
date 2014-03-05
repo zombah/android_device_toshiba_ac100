@@ -164,6 +164,7 @@ PRODUCT_PACKAGES += \
     audio.primary.tegra \
     audio.a2dp.default \
     audio.usb.default \
+    audio.r_submix.default \
     wmiconfig \
     FolioParts
 
