@@ -168,7 +168,8 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     wmiconfig \
-    FolioParts
+    FolioParts \
+    libemoji
 
 # Extra apps
 PRODUCT_PACKAGES += \
