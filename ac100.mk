@@ -99,7 +99,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
     device/toshiba/paz00-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf
+    device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    device/toshiba/paz00-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/toshiba/paz00-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 # Some files for 3G
 PRODUCT_COPY_FILES += \
