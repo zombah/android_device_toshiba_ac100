@@ -30,3 +30,6 @@ ro.zygote.disable_gl_preload=true
 
 # Render UI with GPU
 debug.sf.hw=1
+
+# Graphic glitches fix
+debug.hwui.render_dirty_regions=false
