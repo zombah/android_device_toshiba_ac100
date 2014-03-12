@@ -173,8 +173,6 @@ PRODUCT_PACKAGES += \
 
 # Extra apps
 PRODUCT_PACKAGES += \
-    libhuaweigeneric-ril \
-    libmbm-ril \
     FileManager \
     dropbear \
     hciattach \
@@ -197,8 +195,11 @@ PRODUCT_PACKAGES += \
     SpareParts \
     Development
 
-# Voice stuff
+# Modem stuff
 PRODUCT_PACKAGES += \
+    MbmService \
+    libhuaweigeneric-ril \
+    libmbm-ril \
     Mms \
     Stk \
     rild \
