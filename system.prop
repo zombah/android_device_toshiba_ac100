@@ -1,7 +1,8 @@
 #
 # system.prop for ac100
 #
-# for internal modem
+# for internal mbm modem
+mobiledata.interfaces=wwan0
 rild.libpath=/system/lib/libmbm-ril.so
 rild.libargs=-d /dev/ttyACM1 -i wwan0
 # for external huawei modems
