@@ -197,7 +197,6 @@ PRODUCT_PACKAGES += \
 
 # Modem stuff
 PRODUCT_PACKAGES += \
-    MbmService \
     libhuaweigeneric-ril \
     libmbm-ril \
     Mms \
