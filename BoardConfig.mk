@@ -5,11 +5,11 @@ TARGET_BOOTLOADER_BOARD_NAME 		:= paz00
 TARGET_OTA_ASSERT_DEVICE                := paz00,ac100,GT-P7510
 
 # Kernel
-TARGET_KERNEL_SOURCE                   := kernel/toshiba/ac100
+TARGET_KERNEL_SOURCE                   := kernel/toshiba/grouper
 #TARGET_KERNEL_SOURCE                   := kernel/toshiba/marvin24s-kernel
 #TARGET_KERNEL_CONFIG 			:= cyanogenmod_paz00_defconfig
-#TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
-TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
+TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
+#TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
 #TARGET_KERNEL_CONFIG                   := paz00_android_debug_nonvec_defconfig
 
 BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardware=paz00
