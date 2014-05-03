@@ -37,3 +37,6 @@ debug.hwui.render_dirty_regions=false
 
 # Switch audiohal monitor orientation feature
 ro.audio.monitorOrientation=false
+
+# Unknow
+persist.tegra.nvmmlite = 1
