@@ -34,3 +34,6 @@ debug.sf.hw=1
 
 # Graphic glitches fix
 debug.hwui.render_dirty_regions=false
+
+# Switch audiohal monitor orientation feature
+ro.audio.monitorOrientation=false
