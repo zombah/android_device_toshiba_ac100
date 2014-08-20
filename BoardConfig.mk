@@ -31,6 +31,7 @@ COMPAT_WIRELESS:
 	mv hardware/backports/drivers/net/wireless/rt2x00/rt2x00lib.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/drivers/net/wireless/rt2x00/rt2800lib.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
+	mv hardware/backports/drivers/net/wireless/rndis_wlan.ko $(KERNEL_MODULES_OUT)
 endif
 ifeq ($(BOARD_USES_COMPAT_WIRELESS),true)
 COMPAT_WIRELESS:
