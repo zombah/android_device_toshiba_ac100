@@ -5,7 +5,7 @@ $(call inherit-product, device/toshiba/ac100/full_ac100.mk)
 $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
 $(call inherit-product, vendor/cm/config/telephony.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=paz00 BUILD_FINGERPRINT="motorola/tervigon/wingray:4.1.1/JRO03H/405518:user/release-keys" PRIVATE_BUILD_DESC="tervigon-user 4.1.1 JRO03H 405518 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=paz00 BUILD_FINGERPRINT="google/nakasi/grouper:4.4.3/KTU84L/1148727:user/release-keys" PRIVATE_BUILD_DESC="nakasi-user 4.4.3 KTU84L 1148727 release-keys"
 
 PRODUCT_NAME 				:= cm_ac100
 PRODUCT_RELEASE_NAME 			:= ac100
