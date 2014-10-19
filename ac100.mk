@@ -205,6 +205,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     sys.disable_ext_animation=1
 
+# Enable KSM by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
