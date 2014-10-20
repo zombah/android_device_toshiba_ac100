@@ -86,3 +86,6 @@ BUILD_NUMBER				:= $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell dat
 # CM 11.0 specific
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
 
+# Skip droiddoc build to save build time
+BOARD_SKIP_ANDROID_DOC_BUILD		:= true
+
