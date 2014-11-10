@@ -145,7 +145,6 @@ DEVICE_PACKAGE_OVERLAYS := \
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PROPERTY_OVERRIDES += ro.config.low_ram=true
-PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.jit.codecachesize=0
 
 PRODUCT_PACKAGES += \
     librs_jni \
