@@ -51,7 +51,7 @@ NEED_WORKAROUND_CORTEX_A9_745320	:= true
 RECOVERY_NAME 				:= Toshiba AC100 CWM-based Recovery
 
 # Uboot
-#BOARD_CUSTOM_BOOTIMG_MK 		:= device/toshiba/ac100/uboot-bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK 		:= device/toshiba/ac100/uboot-bootimg.mk
 
 # RIL
 BOARD_MOBILEDATA_INTERFACE_NAME 	:= "wwan0"
