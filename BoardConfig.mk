@@ -65,5 +65,8 @@ BOARD_FIRST_CAMERA_FRONT_FACING 	:= true
 # Custom release tools for uMulti inclusion
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/toshiba/ac100/releasetools/ac100_ota_from_target_files
 
+# Use build_number tag for ota file
+BUILD_NUMBER                              := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)
+
 # Skip droiddoc build to save build time
 BOARD_SKIP_ANDROID_DOC_BUILD              := true
