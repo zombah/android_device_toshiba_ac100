@@ -65,3 +65,5 @@ BOARD_FIRST_CAMERA_FRONT_FACING 	:= true
 # Custom release tools for uMulti inclusion
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/toshiba/ac100/releasetools/ac100_ota_from_target_files
 
+# Skip droiddoc build to save build time
+BOARD_SKIP_ANDROID_DOC_BUILD              := true
