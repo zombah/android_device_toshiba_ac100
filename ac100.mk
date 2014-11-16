@@ -209,6 +209,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     persist.sys.usb.config=mtp,adb
 
+# Blobs necessary for drm
+PRODUCT_COPY_FILES += \
+    device/toshiba/paz00-common/prebuild/drm/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml \
+    device/toshiba/paz00-common/prebuild/drm/com.google.widevine.software.drm.jar:system/framework/com.google.widevine.software.drm.jar \
+    device/toshiba/paz00-common/prebuild/drm/libfrsdk.so:system/lib/libfrsdk.so \
+    device/toshiba/paz00-common/prebuild/drm/libWVphoneAPI.so:system/lib/libWVphoneAPI.so \
+    device/toshiba/paz00-common/prebuild/drm/libwvdrm_L1.so:system/vendor/lib/libwvdrm_L1.so \
+    device/toshiba/paz00-common/prebuild/drm/libwvm.so:system/vendor/lib/libwvm.so \
+    device/toshiba/paz00-common/prebuild/drm/libWVStreamControlAPI_L1.so:system/vendor/lib/libWVStreamControlAPI_L1.so \
+    device/toshiba/paz00-common/prebuild/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    drm.service.enabled=true
+
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
 PRODUCT_COPY_FILES += \
