@@ -41,7 +41,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
 
 # Copy own init.rc for debug reasons
-#PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
+PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
 
 # Copy u-boot boot.scr source
 PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/boot.cmd:system/etc/boot.cmd
