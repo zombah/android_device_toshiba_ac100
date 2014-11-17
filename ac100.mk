@@ -188,9 +188,6 @@ PRODUCT_PACKAGES += \
     powerbtnd \
     chat \
     screen \
-    abootimg \
-    DisableSuspend \
-    mischelp \
     power.tegra \
     faketsd 
 
