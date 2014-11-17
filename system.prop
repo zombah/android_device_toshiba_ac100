@@ -9,3 +9,11 @@ rild.libargs=-d /dev/ttyACM1 -i wwan0
 #rild.libargs=-d /dev/ttyUSB2
 # Powerbtnd behaviour
 poweroff.doubleclick=0
+
+# Enable Network Identity and Time Zone (NITZ) support 
+mbm.ril.config.nitz=yes
+# Enable RIL Fast Dormancy
+mbm.ril.config.fd=yes
+# Enable Neighboring Cell Info support
+# yes = supported, no = not supported, screen = only when screen on
+mbm.ril.config.nci=screen
