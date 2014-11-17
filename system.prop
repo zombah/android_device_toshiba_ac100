@@ -11,9 +11,9 @@ rild.libargs=-d /dev/ttyACM1 -i wwan0
 poweroff.doubleclick=0
 
 # Enable Network Identity and Time Zone (NITZ) support 
-mbm.ril.config.nitz=yes
+mbm.ril.config.nitz=no
 # Enable RIL Fast Dormancy
-mbm.ril.config.fd=yes
+mbm.ril.config.fd=no
 # Enable Neighboring Cell Info support
 # yes = supported, no = not supported, screen = only when screen on
 mbm.ril.config.nci=screen
