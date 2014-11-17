@@ -83,8 +83,7 @@ PRODUCT_COPY_FILES += \
 
 # Input device config
 PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc \
-    device/toshiba/paz00-common/prebuild/Fake_Touchscreen.idc:system/usr/idc/Fake_Touchscreen.idc
+    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc
 
 # Terminfo
 PRODUCT_COPY_FILES += \
@@ -188,8 +187,7 @@ PRODUCT_PACKAGES += \
     powerbtnd \
     chat \
     screen \
-    power.tegra \
-    faketsd 
+    power.tegra
 
 # Copy hwcomposer wrapper
 PRODUCT_PACKAGES += hwcomposer.tegra
