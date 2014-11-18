@@ -177,7 +177,6 @@ PRODUCT_PACKAGES += \
     libmbm-ril \
     FileManager \
     dropbear \
-    sensors.tegra \
     hciattach \
     hcitool \
     l2ping \
