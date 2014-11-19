@@ -37,6 +37,7 @@ PRODUCT_COPY_FILES += \
     device/toshiba/paz00-common/prebuild/02PmStuff:system/etc/init.d/02PmStuff \
     device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour \
     device/toshiba/paz00-common/prebuild/04AdditionalModules:system/etc/init.d/04AdditionalModules \
+    device/toshiba/paz00-common/prebuild/05Pppd:system/etc/init.d/05Pppd \
     device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh \
     device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
 
