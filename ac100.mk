@@ -132,7 +132,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     keyguard.no_require_sim=true \
-    ro.sf.lcd_density=160 
+    ro.sf.lcd_density=120 
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
