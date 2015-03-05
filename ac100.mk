@@ -124,8 +124,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.opengles.version=131072 \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
-    keyguard.no_require_sim=true \
-    ro.sf.lcd_density=120 
+    keyguard.no_require_sim=true
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
