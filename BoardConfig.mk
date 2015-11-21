@@ -25,7 +25,7 @@ COMPAT_WIRELESS:
 	mv hardware/backports/compat/compat.ko $(KERNEL_MODULES_OUT)
 	mv hardware/backports/drivers/net/wireless/rndis_wlan.ko $(KERNEL_MODULES_OUT)
 
-TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
+#TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
 # Jb new additions
 #
