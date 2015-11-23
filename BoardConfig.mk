@@ -5,14 +5,10 @@ TARGET_BOOTLOADER_BOARD_NAME 		:= paz00
 TARGET_OTA_ASSERT_DEVICE                := paz00,ac100,GT-P7510
 
 # Kernel
-TARGET_KERNEL_SOURCE                   := kernel/toshiba/grouper
-#TARGET_KERNEL_SOURCE                   := kernel/toshiba/marvin24s-kernel
-#TARGET_KERNEL_CONFIG 			:= cyanogenmod_paz00_defconfig
-#TARGET_KERNEL_CONFIG                   := paz00_android_debug_defconfig
-TARGET_KERNEL_CONFIG                    := paz00_android_defconfig
-#TARGET_KERNEL_CONFIG                   := paz00_android_debug_nonvec_defconfig
+TARGET_KERNEL_SOURCE			:= kernel/toshiba/ac100
+TARGET_KERNEL_CONFIG			:= tegra_paz00_android_defconfig
 
-BOARD_KERNEL_CMDLINE 			:= mem=512M@0 console=ttyS0,115200n8 androidboot.hardware=paz00
+BOARD_KERNEL_CMDLINE 			:= console=ttyS0,115200n8 androidboot.hardware=paz00
 
 # cmdline with extended debug info
 #BOARD_KERNEL_CMDLINE                    := mem=512M@0 console=ttyS0,115200n8 no_console_suspend=1 androidboot.hardware=paz00 ignore_loglevel earlyprintk initcall_debug tegrapart=recovery:300:a00:800,boot:d00:1000:800,mbr:1d00:200:800 nvtegra_hideparts=BCT,PT,EBT,MBR,EM1,EM2 tegra_wdt.heartbeat=30 cpufreq.debug=7
