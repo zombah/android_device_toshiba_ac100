@@ -43,7 +43,7 @@ COMPAT_WIRELESS:
 	mv hardware/compat-wireless/compat/compat.ko $(KERNEL_MODULES_OUT)
 endif
 
-TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
+#TARGET_KERNEL_MODULES 			:= COMPAT_WIRELESS
 
 # Jb new additions
 #
