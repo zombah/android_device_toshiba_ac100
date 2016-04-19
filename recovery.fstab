@@ -1,10 +1,10 @@
 # mount point	fstype		device			[device2]
 
-/boot           ext2		/dev/block/platform/soc0/c8000600.sdhci/by-num/p2
-/cache		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-num/p4
-/data		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-num/p6
-/misc		emmc		/dev/block/platform/soc0/c8000600.sdhci/by-num/p5
-/recovery	ext2		/dev/block/platform/soc0/c8000600.sdhci/by-num/p1
+/boot           ext2		/dev/block/platform/soc0/c8000600.sdhci/by-name/LNX
+/cache		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-name/CAC
+/data		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-name/UDA
+/misc		emmc		/dev/block/platform/soc0/c8000600.sdhci/by-name/MSC
+/recovery	ext2		/dev/block/platform/soc0/c8000600.sdhci/by-name/SOS
 /sdcard		vfat		/dev/block/platform/soc0/c8000000.sdhci/by-num/p1
-/system		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-num/p3
-/emmc		vfat		/dev/block/platform/soc0/c8000600.sdhci/by-num/p7
+/system		ext4		/dev/block/platform/soc0/c8000600.sdhci/by-name/APP
+/emmc		vfat		/dev/block/platform/soc0/c8000600.sdhci/by-name/UDB
