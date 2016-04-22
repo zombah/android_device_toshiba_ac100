@@ -18,34 +18,13 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product-if-exists, vendor/toshiba/paz00/paz00-vendor.mk)
 
-# Base config files
+# Ramdisk
 PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/init.paz00.rc:root/init.paz00.rc \
-    device/toshiba/paz00-common/prebuild/init.nv_dev_board.usb.rc:root/init.nv_dev_board.usb.rc \
-    device/toshiba/paz00-common/prebuild/init.local.rc:system/etc/init.local.rc \
-    device/toshiba/paz00-common/prebuild/init.sh:system/etc/init.sh \
-    device/toshiba/paz00-common/prebuild/ueventd.paz00.rc:root/ueventd.paz00.rc \
-    device/toshiba/paz00-common/prebuild/fstab.ac100:root/fstab.ac100 \
-    device/toshiba/paz00-common/prebuild/tiny_hw.xml:system/etc/sound/ac100.xml \
-    device/toshiba/paz00-common/prebuild/audio_policy.conf:system/etc/audio_policy.conf \
-    device/toshiba/paz00-common/prebuild/media_profiles.xml:system/etc/media_profiles.xml \
-    device/toshiba/paz00-common/prebuild/media_codecs.xml:system/etc/media_codecs.xml \
-    device/toshiba/paz00-common/prebuild/excluded-input-devices.xml:system/etc/excluded-input-devices.xml \
-    device/toshiba/paz00-common/prebuild/egalax_i2c.idc:system/usr/idc/egalax_i2c.idc \
-    device/toshiba/paz00-common/prebuild/egalax_ts.idc:system/usr/idc/egalax_ts.idc \
-    device/toshiba/paz00-common/prebuild/01NVOptimalization:system/etc/init.d/01NVOptimalization \
-    device/toshiba/paz00-common/prebuild/02PmStuff:system/etc/init.d/02PmStuff \
-    device/toshiba/paz00-common/prebuild/03LedBehaviour:system/etc/init.d/03LedBehaviour \
-    device/toshiba/paz00-common/prebuild/04AdditionalModules:system/etc/init.d/04AdditionalModules \
-    device/toshiba/paz00-common/prebuild/05Pppd:system/etc/init.d/05Pppd \
-    device/toshiba/paz00-common/prebuild/disablesuspend.sh:system/bin/disablesuspend.sh \
-    device/toshiba/paz00-common/prebuild/enablesuspend.sh:system/bin/enablesuspend.sh
+    $(call find-copy-subdir-files,*,device/toshiba/paz00-common/ramdisk,root)
 
-# Copy own init.rc for debug reasons
-PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/init.rc:root/init.rc 
-
-# Copy u-boot boot.scr source
-PRODUCT_COPY_FILES += device/toshiba/paz00-common/prebuild/boot.cmd:system/etc/boot.cmd
+# Prebuilt
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,device/toshiba/paz00-common/prebuilt/system,system)
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -60,50 +39,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml 
-
-# Keylayouts and keychars
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/keymaps/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
-    device/toshiba/paz00-common/keymaps/gpio-keys.kcm:system/usr/keychars/gpio-keys.kcm \
-    device/toshiba/paz00-common/keymaps/NVEC_power_button.kcm:system/usr/keychars/NVEC_power_button.kcm \
-    device/toshiba/paz00-common/keymaps/nvec_keyboard.kcm:system/usr/keychars/nvec_keyboard.kcm \
-    device/toshiba/paz00-common/keymaps/NVEC_sleep_button.kcm:system/usr/keychars/NVEC_sleep_button.kcm \
-    device/toshiba/paz00-common/keymaps/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
-    device/toshiba/paz00-common/keymaps/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/toshiba/paz00-common/keymaps/NVEC_power_button.kl:system/usr/keylayout/NVEC_power_button.kl \
-    device/toshiba/paz00-common/keymaps/nvec_keyboard.kl:system/usr/keylayout/nvec_keyboard.kl \
-    device/toshiba/paz00-common/keymaps/NVEC_sleep_button.kl:system/usr/keylayout/NVEC_sleep_button.kl 
-
-# Input device config
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/ETPS_2_Elantech_Touchpad.idc:system/usr/idc/ETPS_2_Elantech_Touchpad.idc
-
-# Terminfo
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/c/cm \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/l/linux \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/s/screen \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/u/unknown \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/v/vt100 \
-    device/toshiba/paz00-common/prebuild/terminfo:system/etc/terminfo/x/xterm 
-
-# Vold
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/vold.fstab:system/etc/vold.fstab
-
-# WiFi/BT Firmware
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/prebuild/firmware/rt2870.bin:system/vendor/firmware/rt2870.bin \
-    device/toshiba/paz00-common/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/toshiba/paz00-common/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
-
-# Some files for 3G
-PRODUCT_COPY_FILES += \
-    device/toshiba/paz00-common/ppp/ip-up:/system/etc/ppp/ip-up \
-    device/toshiba/paz00-common/ppp/ip-down:/system/etc/ppp/ip-down \
-    device/toshiba/paz00-common/ppp/gprs:system/etc/ppp/peers/gprs \
-    device/toshiba/paz00-common/prebuild/wwlan_select.sh:/system/bin/wwlan_select.sh
 
 ## Copy ralink driver
 #PRODUCT_COPY_FILES += \
