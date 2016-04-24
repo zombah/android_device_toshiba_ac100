@@ -94,7 +94,8 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     wmiconfig \
-    FolioParts
+    FolioParts \
+    com.cyanogenmod.paz00kh
 
 PRODUCT_PACKAGES += rild
 
